@@ -15,8 +15,8 @@ find_package(yaml-cpp REQUIRED)
 # message(STATUS ${YAML_CPP_LIBRARIES})
 
 # jsoncpp
-set(Jsoncpp_INCLUDE_PATH "/usr/include/jsoncpp")
-set(Jsoncpp_LIBRARY "/usr/lib/x86_64-linux-gnu/libjsoncpp.so")
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(JSONCPP jsoncpp)
 
 #opencv
 find_package(OpenCV REQUIRED)
@@ -42,8 +42,8 @@ target_include_directories(yamlcppTest PRIVATE ${YAML_CPP_INCLUDE_DIR})
 target_link_libraries(yamlcppTest ${YAML_CPP_LIBRARIES})
 
 add_executable(jsoncppTest src/jsoncppTest.cpp)
-target_include_directories(jsoncppTest PRIVATE ${Jsoncpp_INCLUDE_PATH})
-target_link_libraries(jsoncppTest ${Jsoncpp_LIBRARY})
+target_include_directories(jsoncppTest PRIVATE ${JSONCPP_INCLUDE_DIR})
+target_link_libraries(jsoncppTest ${JSONCPP_LIBRARIES})
 
 add_executable(opencvTest src/opencvTest.cpp)
 target_include_directories(opencvTest PRIVATE ${OpenCV_INCLUDE_DIRS})
